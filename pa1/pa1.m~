@@ -1,0 +1,26 @@
+%% Parameters
+clc
+clear
+
+x0 = 0;
+x1 = 1;
+
+N = 8;
+h = 1/N;
+
+Niter = 50;
+
+%% Initialization
+k = 1;
+x = 0:h:1;
+u = sin(pi * k * x);
+
+error = zeros(Niter + 1, 1);
+error(1) = max(abs(u));
+
+%% Computation
+for i = 1:Niter
+    u(2:end-1) = .5*(u(1:end-2) + u(3:end));
+    error(i) = max(abs(u));
+end
+
